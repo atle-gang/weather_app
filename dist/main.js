@@ -20,13 +20,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/displayInfo.js":
+/*!****************************!*\
+  !*** ./src/displayInfo.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   displayInfo: () => (/* binding */ displayInfo)\n/* harmony export */ });\nconst displayInfo = (() => {\n    function displaySearchInfo(weatherData) {\n        if (!weatherData) return; \n\n        const searchResult = document.getElementById(\"searchResult\");\n        searchResult.classList.add(\"active\");\n\n        const cityName = document.getElementById(\"cityName\");\n        const temperature = document.getElementById(\"temperature\");\n        const condition = document.getElementById(\"condition\");\n        const wind = document.getElementById(\"windSpeed\");\n        const windDirection = document.getElementById(\"windDirection\");\n        const humidity = document.getElementById(\"humidity\");\n\n\n\n        cityName.textContent = `${weatherData.location.name}, ${weatherData.location.country}`;\n        temperature.textContent = `${weatherData.current.temp_c} °C`;\n        condition.textContent = `Condition: ${weatherData.current.condition.text}`;\n        wind.textContent = `Wind: ${weatherData.current.wind_kph} km/h`;\n        windDirection.textContent = `Wind Direction: ${weatherData.current.wind_dir}`;\n        humidity.textContent = `Humidity: ${weatherData.current.humidity} %`;\n    }\n    return { displaySearchInfo };\n})();\n\n\n//# sourceURL=webpack://weather_app/./src/displayInfo.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api */ \"./src/api.js\");\n\n\n(0,_api__WEBPACK_IMPORTED_MODULE_0__.fetchWeatherData)('Pretoria')\n\n//# sourceURL=webpack://weather_app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api.js */ \"./src/api.js\");\n/* harmony import */ var _displayInfo_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./displayInfo.js */ \"./src/displayInfo.js\");\n\n\n\nconst searchForm = document.getElementById(\"searchForm\");\nconst searchInput = document.getElementById(\"searchInput\");\nconst searchBtn = document.getElementById(\"searchBtn\");\n\nsearchForm.addEventListener(\"submit\", (e) => {\n  e.preventDefault();\n});\n\nsearchBtn.addEventListener(\"click\", async () => {\n  if (searchInput.value === \"\") return;\n  const weatherData = await (0,_api_js__WEBPACK_IMPORTED_MODULE_0__.fetchWeatherData)(searchInput.value);\n  _displayInfo_js__WEBPACK_IMPORTED_MODULE_1__.displayInfo.displaySearchInfo(weatherData);\n});\n\n//# sourceURL=webpack://weather_app/./src/index.js?");
 
 /***/ })
 
